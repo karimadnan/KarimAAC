@@ -4,8 +4,8 @@ import "./globals.css";
 import Menu from "./modules/menu/page";
 import StatusBar from "./modules/status-bar/page";
 import BackgroundImage from "./modules/background-image/page";
-import Image from "next/image";
 import LoginMenu from "./modules/login-menu/page";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,14 +27,7 @@ export default function RootLayout({
           <div className="xl:w-[80%] w-[90%] mt-10">
             <Menu />
             <StatusBar />
-            <div className="flex mt-5 justify-between">
-              <div className="bg-white max-w-max rounded-md w-[100%] md:w-[75%]">
-                {children}
-              </div>
-              <div className="hidden md:block w-[24%]">
-                <LoginMenu />
-              </div>
-            </div>
+            {children}
           </div>
         </div>
       </body>
