@@ -686,13 +686,15 @@ model players {
   player_storage                                           player_storage[]
   player_wheeldata                                         player_wheeldata?
   accounts                                                 accounts               @relation(fields: [account_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "players_account_fk")
+  players_online                                           players_online[]
 
   @@index([account_id], map: "account_id")
   @@index([vocation], map: "vocation")
 }
 
 model players_online {
-  player_id Int @id
+  player_id Int     @id
+  player    players @relation(fields: [player_id], references: [id])
 }
 
 model server_config {
