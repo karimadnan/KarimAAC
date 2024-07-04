@@ -1,13 +1,13 @@
-import { Alert, AlertDescription } from "@karimACC/app/ui/components/alert";
 import { Badge } from "@karimACC/app/ui/components/badge";
 import { Button } from "@karimACC/app/ui/components/button";
+import Paper from "@karimACC/app/ui/components/paper";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function StatusBar() {
   return (
-    <Alert className="mt-5 w-full">
-      <AlertDescription className="flex justify-between flex-col md:flex-row gap-3">
+    <Paper className="mt-5 w-full p-3">
+      <div className="flex justify-between flex-col md:flex-row gap-3">
         <Button>Download Client</Button>
 
         <Badge variant="default">
@@ -29,7 +29,7 @@ export default function StatusBar() {
             alt="facebook-icon"
           />
         </div>
-      </AlertDescription>
-    </Alert>
+      </div>
+    </Paper>
   );
 }

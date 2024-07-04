@@ -84,7 +84,7 @@ model accounts {
   id                  Int                   @id @default(autoincrement()) @db.UnsignedInt
   name                String                @unique(map: "accounts_unique") @db.VarChar(32)
   password            String                @db.Text
-  email               String                @default("") @db.VarChar(255)
+  email               String                @unique(map: "accounts_email_unique") @db.VarChar(255)
   premdays            Int                   @default(0)
   premdays_purchased  Int                   @default(0)
   lastday             Int                   @default(0) @db.UnsignedInt
@@ -686,15 +686,17 @@ model players {
   player_storage                                           player_storage[]
   player_wheeldata                                         player_wheeldata?
   accounts                                                 accounts               @relation(fields: [account_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "players_account_fk")
-  players_online                                           players_online[]
+  PlayerOnline                                             PlayerOnline?
 
   @@index([account_id], map: "account_id")
   @@index([vocation], map: "vocation")
 }
 
-model players_online {
+model PlayerOnline {
   player_id Int     @id
   player    players @relation(fields: [player_id], references: [id])
+
+  @@map("players_online")
 }
 
 model server_config {
