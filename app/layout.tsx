@@ -4,8 +4,6 @@ import "./globals.css";
 import Menu from "./modules/menu/page";
 import StatusBar from "./modules/status-bar/page";
 import BackgroundImage from "./modules/background-image/page";
-import LoginMenu from "./modules/login-menu/page";
-import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
