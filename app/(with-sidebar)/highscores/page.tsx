@@ -1,4 +1,4 @@
-import { prisma } from "../util/prisma";
+import { prisma } from "@karimACC/app/util/prisma";
 
 export default async function Highscores() {
   const res = await prisma.players.findMany({

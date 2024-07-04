@@ -1,7 +1,7 @@
-import { prisma } from "../util/prisma";
+import { prisma } from "@karimACC/app/util/prisma";
 
 export default async function WhoIsOnline() {
-  const res = await prisma.players_online.count({
+  const res = await prisma.playerOnline.count({
     where: { player: { group_id: { lt: 4 } } },
   });
 

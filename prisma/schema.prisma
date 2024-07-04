@@ -84,11 +84,7 @@ model accounts {
   id                  Int                   @id @default(autoincrement()) @db.UnsignedInt
   name                String                @unique(map: "accounts_unique") @db.VarChar(32)
   password            String                @db.Text
-  <<<<<<< HEAD
   email               String                @unique(map: "accounts_email_unique") @db.VarChar(255)
-  =======
-  email               String                @default("") @db.VarChar(255)
-  >>>>>>> f4182a9ee2fb250f1bb1181062d29d436c2a146e
   premdays            Int                   @default(0)
   premdays_purchased  Int                   @default(0)
   lastday             Int                   @default(0) @db.UnsignedInt
