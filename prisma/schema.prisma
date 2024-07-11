@@ -100,6 +100,8 @@ model accounts {
   coins_transactions  coins_transactions[]
   players             players[]
   store_history       store_history[]
+  verified            Boolean               @default(false)
+  token               String?               @db.VarChar(255)
 }
 
 model boosted_boss {
