@@ -7,7 +7,7 @@ export default function AccountLayout({
 }>) {
   return (
     <div className="mt-5">
-      <Paper className="w-full">{children}</Paper>
+      <Paper className="w-full min-h-80">{children}</Paper>
     </div>
   );
 }
