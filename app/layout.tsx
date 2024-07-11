@@ -22,11 +22,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <BackgroundImage />
         <div className="flex flex-col justify-center items-center mt-60">
-          <div className="xl:w-[80%] w-[90%] mt-10">
+          <div className="xl:w-[80%] w-[90%] m-10">
             <Menu />
             <StatusBar />
             {children}
           </div>
+          <p className="text-slate-50 text-xs mb-10">@KarimAAC</p>
         </div>
       </body>
     </html>
