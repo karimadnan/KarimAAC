@@ -2,7 +2,7 @@ import { getAccountInfo } from "@karimACC/app/server/account/account";
 import { auth } from "@karimACC/app/auth";
 import { cn } from "@karimACC/app/util/common";
 import Image from "next/image";
-import AccountActions from "./account-actions";
+import AccountActions from "./menu-actions";
 
 export default async function LoggedIn() {
   const session = await auth();
@@ -27,6 +27,7 @@ export default async function LoggedIn() {
           height={32}
           width={32}
           alt="tibia-coins"
+          unoptimized
         />
         <p
           className={cn(
