@@ -1,6 +1,6 @@
 import AccountOverview from "@karimACC/app/modules/account/account-overview";
 import { auth } from "../../auth";
-import LoginForm from "../../modules/login-form/login-form";
+import LoginForm from "../../modules/login/login-form";
 import { Suspense } from "react";
 import LoginPage from "@karimACC/app/modules/login-page/login-page";
 

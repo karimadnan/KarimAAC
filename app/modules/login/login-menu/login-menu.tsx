@@ -1,4 +1,4 @@
-import LoginForm from "../login-form/login-form";
+import LoginForm from "../login/login-form";
 import { auth } from "@karimACC/app/auth";
 import LoggedIn from "./logged-in";
 import { Suspense } from "react";

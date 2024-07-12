@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@karimACC/app/ui/components/card";
 import Image from "next/image";
-import LoginForm from "../login-form/login-form";
+import LoginForm from "../login/login-form";
 import SplitScreenPaper from "@karimACC/app/ui/components/split-screen-paper";
 
 export default function LoginPage() {
