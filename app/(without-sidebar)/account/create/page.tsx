@@ -1,14 +1,6 @@
-import { Button } from "@karimACC/app/ui/components/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@karimACC/app/ui/components/card";
 import Image from "next/image";
 import SplitScreenPaper from "@karimACC/app/ui/components/split-screen-paper";
-import CreateAccountForm from "@karimACC/app/modules/create-account-form/create-account-form";
+import CreateAccountForm from "@karimACC/app/modules/sign-up/create-account-form";
 
 export default function LoginPage() {
   return (

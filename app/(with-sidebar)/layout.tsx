@@ -1,4 +1,4 @@
-import LoginMenu from "../modules/login-menu/login-menu";
+import LoginMenu from "../modules/login/login-menu/login-menu";
 import Paper from "../ui/components/paper";
 
 export default function WithSidebarLayout({
