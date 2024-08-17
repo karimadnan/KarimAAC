@@ -1,5 +1,5 @@
 "use server";
-
+import bcrypt from "bcrypt";
 import { prisma } from "@karimACC/app/util/prisma";
 
 export async function dbLogin(
@@ -10,7 +10,14 @@ export async function dbLogin(
       where: { email: String(credentials?.email) },
     });
 
-    if (!findAccount || findAccount.password !== credentials?.password) {
+    if (!findAccount) return false;
+
+    const comparePasswordHash = bcrypt.compareSync(
+      String(credentials?.password),
+      findAccount?.password
+    );
+
+    if (!comparePasswordHash) {
       return false;
     }
 
