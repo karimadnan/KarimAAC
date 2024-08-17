@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AccountLoading() {
   return (
-    <div className="flex justify-center items-center gap-10">
+    <div className="flex justify-center items-center">
       <Image
         className="object-contain"
         src={"/login-teleport-animation.gif"}

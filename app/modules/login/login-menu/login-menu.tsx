@@ -3,6 +3,7 @@ import LoggedIn from "./logged-in";
 import { Suspense } from "react";
 import Paper from "@karimACC/app/ui/components/paper";
 import LoginForm from "../login-form";
+import AccountLoading from "../../account/account-loading";
 
 export default async function LoginMenu() {
   const session = await auth();
@@ -13,7 +14,7 @@ export default async function LoginMenu() {
       {!user?.id ? (
         <LoginForm />
       ) : (
-        <Suspense fallback={<h1>Loading</h1>}>
+        <Suspense fallback={<AccountLoading />}>
           <LoggedIn />
         </Suspense>
       )}
