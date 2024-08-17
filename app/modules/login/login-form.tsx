@@ -71,7 +71,7 @@ export default function LoginForm() {
             <FormItem>
               <FormLabel>password</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Password" />
+                <Input {...field} placeholder="Password" type="password" />
               </FormControl>
               <FormMessage />
             </FormItem>

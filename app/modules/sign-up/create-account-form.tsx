@@ -23,8 +23,13 @@ import Image from "next/image";
 import { cn } from "@karimACC/app/util/common";
 import { Button } from "@karimACC/app/ui/components/button";
 import { useRouter } from "next/navigation";
+import { createAccountAction } from "@karimACC/app/server/account/account";
+import { useState } from "react";
+import { signIn } from "@karimACC/app/server/auth/auth";
 
 export default function CreateAccountForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const form = useForm<CreateAccountModel>({
@@ -34,19 +39,29 @@ export default function CreateAccountForm() {
       password: "",
       confirmPassword: "",
       characterName: "",
-      sex: "",
+      sex: "1",
       vocation: 1,
     },
   });
 
-  function onSubmit(values: CreateAccountModel) {
-    console.log(values, "values");
+  async function onFormSubmit(values: CreateAccountModel) {
+    setIsLoading(true);
+    setError("");
+    const response = await createAccountAction(values);
+    setIsLoading(false);
+
+    if (response?.message) {
+      setError(response?.message);
+    } else {
+      await signIn({ email: values.email, password: values.password });
+      router.push("/account");
+    }
   }
 
   return (
     <div className="w-full p-5">
       <Form<CreateAccountModel> {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onFormSubmit)}>
           <FormField
             name="email"
             render={({ field }) => (
@@ -121,6 +136,7 @@ export default function CreateAccountForm() {
                 <FormItem className="space-y-3 p-2 mt-2">
                   <FormControl>
                     <RadioGroup
+                      {...field}
                       onValueChange={field.onChange}
                       className="flex flex-col space-y-1"
                     >
@@ -149,39 +165,46 @@ export default function CreateAccountForm() {
             render={({ field }) => (
               <FormItem className="space-y-3 p-2 mt-2">
                 <FormControl>
-                  <div className="grid grid-cols-vocations-grid gap-2">
-                    {VOCATIONS_OPTIONS.map((vocation) => (
-                      <div
-                        key={vocation.value}
-                        className={cn(
-                          "border rounded-md p-5 flex flex-col justify-between items-center",
-                          field.value === vocation.value && "border-green-500"
-                        )}
-                        role="button"
-                        onClick={() =>
-                          field.onChange(() =>
-                            form.setValue("vocation", vocation.value)
-                          )
-                        }
-                      >
-                        <p className="text-xl font-bold">{vocation.name}</p>
-                        <Image
-                          className="object-contain"
-                          src={vocation.image}
-                          alt={`${vocation.name}-image`}
-                          height={64}
-                          width={64}
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  <>
+                    <div className="grid grid-cols-vocations-grid gap-2">
+                      {VOCATIONS_OPTIONS.map((vocation) => (
+                        <div
+                          key={vocation.value}
+                          className={cn(
+                            "border rounded-md p-5 flex flex-col justify-between items-center",
+                            field.value === vocation.value && "border-green-500"
+                          )}
+                          role="button"
+                          onClick={() =>
+                            field.onChange(() =>
+                              form.setValue("vocation", vocation.value)
+                            )
+                          }
+                        >
+                          <p className="text-xl font-bold">{vocation.name}</p>
+                          <Image
+                            className="object-contain"
+                            src={vocation.image}
+                            alt={`${vocation.name}-image`}
+                            height={64}
+                            width={64}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </>
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+          <p className="text-red-500">{error}</p>
           <div className="mt-2 w-full grid place-items-center gap-2">
-            <Button className="w-full md:w-1/2" type="submit">
+            <Button
+              className="w-full md:w-1/2"
+              type="submit"
+              isLoading={isLoading}
+            >
               Submit
             </Button>
           </div>

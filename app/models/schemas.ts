@@ -7,15 +7,15 @@ export const userSchema = z.object({
 
 export const createAccountSchema = z
   .object({
-    email: z.string().email().max(250),
+    email: z.string().trim().email().max(250),
     password: z.string().min(6).max(250),
     confirmPassword: z.string().max(250),
-    characterName: z.string().min(3).max(20),
-    sex: z.union([
-      z.string().length(1, { message: "Please choose your charater sex." }),
-      z.number(),
-    ]),
-    vocation: z.number().min(1).max(4),
+    characterName: z
+      .string()
+      .min(3, { message: "Name must contain at least 3 characters." })
+      .max(20, { message: "Name cannot exceed 20 characters." }),
+    sex: z.string(),
+    vocation: z.number(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords does not match.",
