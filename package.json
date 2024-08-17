@@ -23,6 +23,7 @@
     "lucide-react": "^0.400.0",
     "next": "14.2.4",
     "next-auth": "5.0.0-beta.18",
+    "nodemailer": "^6.9.14",
     "prisma": "^5.16.1",
     "react": "^18",
     "react-dom": "^18",
@@ -32,7 +33,9 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
