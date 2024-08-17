@@ -94,14 +94,15 @@ model accounts {
   tournament_coins    Int                   @default(0) @db.UnsignedInt
   creation            Int                   @default(0) @db.UnsignedInt
   recruiter           Int?                  @default(0)
+  verified            Boolean?              @default(false)
+  token               String?               @db.VarChar(255)
+  verify_token        String?               @db.VarChar(255)
   account_ban_history account_ban_history[]
   account_bans        account_bans?
   account_viplist     account_viplist[]
   coins_transactions  coins_transactions[]
   players             players[]
   store_history       store_history[]
-  verified            Boolean               @default(false)
-  token               String?               @db.VarChar(255)
 }
 
 model boosted_boss {
